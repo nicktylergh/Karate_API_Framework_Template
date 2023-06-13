@@ -1,21 +1,23 @@
 # PocKarate
 
 Karate config file:
-So with my PoC, I'm using the KARATE project, and one of its essential features is the karate-config file. This file contains all the configurations related to the testing we will perform. It is written in JavaScript and includes global variables that can be accessed throughout the project.
+One of its essential features is the karate-config file. This file contains all the configurations related to the testing we will perform. It is written in JavaScript and includes global variables that can be accessed throughout the project.
 
 Src/test/Resources
+
 filePath.json:
-After that, I have a configuration file called filePath.json. It is a JSON file that contains shortcuts to frequently used project locations. For example, it includes an environment variable that stores the actual location of the environment file.
+I have a configuration file called filePath.json. It is a JSON file that contains shortcuts to frequently used project locations. For example, it includes an environment variable that stores the actual location of the environment file.
 
 Environment.json:
-Next, we have the Environment.json file, which contains information about the database connection. If we need to retrieve data from the database, we can find the database configuration in this file.
+The Environment.json file, which contains information about the database connection. If we need to retrieve data from the database, we can find the database configuration in this file.
 
 ApiServerData.json:
-The third file is called ApiServerData.json, and it contains various endpoints that we'll be using in our testing. It includes URLs and different fields that are relevant to the testing process.
+We have ApiServerData.json, and it contains various endpoints that we'll be using in our testing. It includes URLs and different fields that are relevant to the testing process.
 
 Src/Test/Java
+
 Data.globalUserApiUS package:
-Apart from those files, we also have a package called data.GlobalUserAPIUS. This package contains JSON files that serve as request bodies. When we perform methods like POST or PATCH, we can use these JSON files as the request body.
+We also have a package called data.GlobalUserAPIUS. This package contains JSON files that serve as request bodies. When we perform methods like POST, PUT or PATCH, we can use these JSON files as the request body.
 
 
 
