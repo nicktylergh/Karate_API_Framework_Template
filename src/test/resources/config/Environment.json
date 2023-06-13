@@ -1,0 +1,11 @@
+{
+	"qa": {
+		"region": "qa",
+		"DBServerURL": "",
+		"DBUserName": "",
+		"DBPassword": "",
+		"TestDBServerURL": "",
+		"TestDBUserName": "",
+		"TestDBPassword": ""
+	}
+}

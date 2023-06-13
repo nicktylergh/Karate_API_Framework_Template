@@ -1,0 +1,11 @@
+{
+	"Environment": "/src/test/resources/config/Environment.json",
+	"ApiServerData": "classpath:/src/test/resources/config/ApiServerData.json",
+
+	"UserProfileTestData": "src/test/java/data/globalUserApiUS/updateUserProfile.json",
+	"NewsLetterTestData": "src/test/java/data/globalUserApiUS/newsLetterUpdate.json",
+
+	"GenerateTestData": "src/test/java/helpers/GenerateTestData.feature",
+	"GenerateAuthToken": "classpath:/helpers/GenerateAuthToken.feature",
+	"Headers": "classpath:/helpers/Headers.feature"
+} 
