@@ -1,7 +1,7 @@
 # Karate API Framework Template
 
 This is a template version of a production-grade **Karate API testing framework**.  
-All sensitive information has been removed. The template demonstrates structure, utilities, and best practices for scalable API automation.
+
 
 ---
 
@@ -72,4 +72,4 @@ It demonstrates:
 - Reusable feature files
 - Clear reporting
 
-Use this template to quickly bootstrap new Karate-based automation projects.
+
