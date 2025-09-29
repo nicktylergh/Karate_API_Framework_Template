@@ -1,22 +1,25 @@
-Feature: Generate Authentication token for qa Environment
+Feature: Generate Authentication Token
 
-  #qa
   @token
-  Scenario: Generate access Token
-    * def ServerData = read(apiServerData)
-    * def baseURL =  ServerData.baseQaURL
-    * def apiURI = ServerData.authSignIn
-    * def endpoint = baseURL+apiURI
+  Scenario: Generate access token for given environment
+    * def serverData = read(apiServerData)
+    * def baseURL = env == 'qa' ? serverData.baseQaURL : serverData.baseAnotherEnvURL
+    * def apiURI = serverData.authSignIn
+    * def endpoint = baseURL + apiURI
+
     * def request_body =
-      """
-      {
-      "email": '#(email)',
-      "password": '#(password)'
-      }
-      """
-    Given headers {Accept: 'application/json'}
+    """
+    {
+      "email": "#(email)",
+      "password": "#(password)"
+    }
+    """
+
+    Given headers { Accept: 'application/json' }
     And url endpoint
     And request request_body
     When method POST
+    Then status 200
     * print response
-    * def token = response.AccessToken
+    * def token = response.token ? response.token : response.accessToken
+    * karate.set('authToken', token)

@@ -1,25 +1,27 @@
 package utils;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 public class Constants {
 
-	public final static String CLASSNAME = "";
-	public static Connection connection = null;
-	public static Statement statement = null;
-	public static ResultSet rs = null;
-	public static List<LinkedHashMap<String, String>> resultsetInListOfMaps = new ArrayList<>();
-	public static Map<String, Object> envDataMap = new LinkedHashMap<String, Object>();
-	public static String query;
-	public static String depQuery;
-	public static void setQuery(String region) {
-		
-	}
+    // ==============================
+    // Config File Locations
+    // ==============================
+    public static final String ENV_FILE = "classpath:config/Environment.json";
+    public static final String API_SERVER_FILE = "classpath:config/ApiServerData.json";
+    public static final String FILE_PATH_CONFIG = "classpath:config/FilePath.json";
+
+    // ==============================
+    // Default DB Settings (can be overridden in Environment.json)
+    // ==============================
+    public static final String DEFAULT_DB_DRIVER = "com.mysql.cj.jdbc.Driver";
+    public static final String DEFAULT_DB_URL = "";
+    public static final String DEFAULT_DB_USER = "";
+    public static final String DEFAULT_DB_PASSWORD = "";
+
+    // ==============================
+    // Runtime Storage
+    // ==============================
+    public static Map<String, Object> envDataMap = new LinkedHashMap<>();
 }

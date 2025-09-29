@@ -1,13 +1,11 @@
 Feature: Set up Test Data
 
   @updateUserProfile
-  Scenario: create data for update user endpoint
-    * def javaClassObject = Java.type('utils.DataGenerator')
-    * print fileName
-    * def result = (new javaClassObject()).generateUserProfileData(fileName, region,index, email, password)
-    
-   @newsLetterUpdate
-  Scenario: create data for newsLetter update
-    * def javaClassObject = Java.type('utils.DataGenerator')
-    * print fileName
-    * def result = (new javaClassObject()).generateNewsLetterData(fileName, region,index, email)
+  Scenario: Create data for update user profile endpoint
+    * def DataGenerator = Java.type('utils.DataGenerator')
+    * eval new DataGenerator().generateUserProfileData(fileName, region, index, email, password)
+
+  @newsLetterUpdate
+  Scenario: Create data for newsletter update endpoint
+    * def DataGenerator = Java.type('utils.DataGenerator')
+    * eval new DataGenerator().generateNewsLetterData(fileName, region, index, email)

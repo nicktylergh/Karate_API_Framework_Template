@@ -1,21 +1,23 @@
 {
-	"baseQaURL": "https://qa-us-globalauth.ecoatm.com",
-	"baseAnotherEnvURL": "",
-	"authSignIn": "/globalauth/api/v1/auth/login",
-	"global-user-api(US)": {
-		"updateUserProfile": "/globaluser/api/v1/user",
-		"newsLetterUpdate": "/globaluser/api/v1/user/newsletter",
-		"getUserProfile": "/globaluser/api/v1/user",
-		"dropOffCodes": "/globaluser/api/v1/user/dropoffcode",
-		"deleteUserProfile": "/globaluser/api/v1/user",
-		"healthCheck": "/globaluser/healthcheck"
-	},
-	"second collection": { 
-		"updateUserProfile": "/globaluser/api/v1/user",
-		"newsLetterUpdate": "/globaluser/api/v1/user/newsletter",
-		"getUserProfile": "/globaluser/api/v1/user",
-		"dropOffCodes": "/globaluser/api/v1/user/dropoffcode",
-		"deleteUserProfile": "/globaluser/api/v1/user",
-		"healthCheck": "/globaluser/healthcheck"
-	}
+  "baseQaURL": "https://qa.example.com",
+  "baseAnotherEnvURL": "https://dev.example.com",
+  "authSignIn": "/auth/api/v1/login",
+
+  "userApi": {
+    "updateUserProfile": "/user/api/v1/profile",
+    "newsLetterUpdate": "/user/api/v1/newsletter",
+    "getUserProfile": "/user/api/v1/profile",
+    "dropOffCodes": "/user/api/v1/dropoffcode",
+    "deleteUserProfile": "/user/api/v1/profile",
+    "healthCheck": "/user/healthcheck"
+  },
+
+  "sampleCollection": {
+    "updateUserProfile": "/user/api/v1/profile",
+    "newsLetterUpdate": "/user/api/v1/newsletter",
+    "getUserProfile": "/user/api/v1/profile",
+    "dropOffCodes": "/user/api/v1/dropoffcode",
+    "deleteUserProfile": "/user/api/v1/profile",
+    "healthCheck": "/user/healthcheck"
+  }
 }

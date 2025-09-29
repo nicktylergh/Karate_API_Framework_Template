@@ -2,7 +2,7 @@ package utils;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Iterator;
@@ -15,80 +15,62 @@ import org.json.JSONObject;
 
 public class JsonFileUtils {
 
-	/**
-	 * This method converts JSON file to String
-	 * 
-	 * @param fileName
-	 * @return
-	 */
-	public static String jsonToStrConvertion(String fileName) {
-		String str = null;
-		try {
-			byte[] encoded = Files
-					.readAllBytes(Paths.get(fileName));
-			str = new String(encoded, Charset.defaultCharset());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+    /**
+     * Converts a JSON file to String.
+     */
+    public static String jsonToStrConvertion(String fileName) throws IOException {
+        byte[] encoded = Files.readAllBytes(Paths.get(fileName));
+        return new String(encoded, StandardCharsets.UTF_8);
+    }
 
-		return str;
-	}
+    /**
+     * Modifies test data inside a JSON file.
+     *
+     * @param map      key/value pairs to update
+     * @param fileName JSON file path
+     * @param region   region inside the JSON
+     * @param index    which object in the array to update
+     */
+    public static void modifyTestData(Map<String, Object> map, String fileName, String region, int index)
+            throws JSONException, IOException {
 
-	
+        String jsonToString = jsonToStrConvertion(fileName);
 
-	public static void modifyTestData(Map<String, Object> map,String fileName, String region, int index) throws JSONException, IOException {
-		
-		String jsonToString = JsonFileUtils.jsonToStrConvertion(fileName);
-		
-		JSONObject obj = new JSONObject(jsonToString);
-		System.out.println(obj);
-		JSONArray regionArr = obj.getJSONArray(region);
-		JSONObject regionData = regionArr.getJSONObject(index);
-		
+        JSONObject obj = new JSONObject(jsonToString);
+        JSONArray regionArr = obj.getJSONArray(region);
+        JSONObject regionData = regionArr.getJSONObject(index);
 
-		for (Map.Entry<String, Object> entry : map.entrySet()) {
+        // Update values
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            regionData.put(entry.getKey(), entry.getValue());
+        }
 
-			String key = entry.getKey();
-			Object value = entry.getValue();
-			regionData.put(key, value);
-			System.out.println(key + ":" + value);
-		}
+        // Write changes back to file
+        try (FileWriter file = new FileWriter(fileName, false)) {
+            file.write(obj.toString(4)); // pretty print with indentation
+        }
+    }
 
-		System.out.println(obj.toString());
+    /**
+     * Converts JSON object for a given region into a Map.
+     */
+    public static Map<String, Object> jsonToMap(String filePath, String region)
+            throws IOException, JSONException {
 
-		FileWriter file = new FileWriter(fileName, false);
-		file.write(obj.toString());
-		file.flush();
+        Map<String, Object> regionDataMap = new LinkedHashMap<>();
 
-	}
-	
-	public static Map<String, Object> jsonToMap(String filePath, String region) {
-		Map<String, Object> regionDataMap = new LinkedHashMap<String, Object>();
-		
-		String jsonToString = jsonToStrConvertion(filePath);
-		try {
-			// Convert to JSON object
-			JSONObject obj = new JSONObject(jsonToString);
-			JSONObject envMap = (JSONObject) obj.get(region);
+        String jsonToString = jsonToStrConvertion(filePath);
+        JSONObject obj = new JSONObject(jsonToString);
+        JSONObject envMap = obj.getJSONObject(region);
 
-			Iterator<String> keys = envMap.keys();
-			// loop through json object and store in map
-			while (keys.hasNext()) {
-				String key = keys.next();
-
-				// if key is null or empty then dont add value to map
-				if (envMap.get(key) != null && !envMap.optString(key).equals("")) {
-					regionDataMap.put(key, envMap.get(key));
-				}
-			}
-
-			
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return regionDataMap;
-		
-	}
-
+        Iterator<String> keys = envMap.keys();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            Object value = envMap.get(key);
+            if (value != null && !value.toString().isEmpty()) {
+                regionDataMap.put(key, value);
+            }
+        }
+        return regionDataMap;
+    }
 }

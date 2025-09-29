@@ -1,1 +1,11 @@
-{"qa":[{"newsletter":false,"firstName":"Kendrick","lastName":"Luettgen","countryCode":"mv","email":"nick.tyler@ecoatm.com"},{"newsletter":false,"firstName":"Brady","lastName":"Baumbach","countryCode":"tt","email":"nick.tyler@ecoatm.com"}],"dev":[{"newsletter":false,"firstName":"Harish","lastName":"Reddy","countryCode":"US","email":"gayec82480@dni8.com"}]}
+{
+  "qa": [
+    {
+      "email": "newsletter.qa@example.com",
+      "countryCode": "US",
+      "firstName": "Newsletter",
+      "lastName": "Subscriber",
+      "newsletter": true
+    }
+  ]
+}

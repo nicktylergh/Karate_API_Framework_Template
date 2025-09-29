@@ -1,11 +1,20 @@
 {
-	"qa": {
-		"region": "qa",
-		"DBServerURL": "",
-		"DBUserName": "",
-		"DBPassword": "",
-		"TestDBServerURL": "",
-		"TestDBUserName": "",
-		"TestDBPassword": ""
-	}
+  "qa": {
+    "region": "qa",
+    "DBServerURL": "jdbc:mysql://qa-db.example.com:3306/testdb",
+    "DBUserName": "qa_user",
+    "DBPassword": "qa_password",
+    "TestDBServerURL": "jdbc:mysql://qa-db.example.com:3306/testdb",
+    "TestDBUserName": "qa_user",
+    "TestDBPassword": "qa_password"
+  },
+  "dev": {
+    "region": "dev",
+    "DBServerURL": "jdbc:mysql://dev-db.example.com:3306/testdb",
+    "DBUserName": "dev_user",
+    "DBPassword": "dev_password",
+    "TestDBServerURL": "jdbc:mysql://dev-db.example.com:3306/testdb",
+    "TestDBUserName": "dev_user",
+    "TestDBPassword": "dev_password"
+  }
 }

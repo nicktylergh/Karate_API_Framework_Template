@@ -1,60 +1,67 @@
 package utils;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import net.datafaker.Faker;
 import org.json.JSONException;
-
-import com.github.javafaker.Faker;
 
 public class DataGenerator extends JsonFileUtils {
 
+    private static final Faker faker = new Faker();
 
-	public void generateUserProfileData(String fileName, String region, String indexStr, String email, String password) throws JSONException, IOException {
-		int index = Integer.parseInt(indexStr);
-		Faker fakeData = new Faker(); // to use to generate random data.
+    /**
+     * Generates random user profile test data and updates the JSON file.
+     */
+    public void generateUserProfileData(String fileName, String region, String indexStr, String email, String password) {
+        try {
+            int index = Integer.parseInt(indexStr);
 
-		//use DBUtils in case database connection is needed for test data.
+            Map<String, Object> user = new LinkedHashMap<>();
+            user.put("email", email);
+            user.put("password", password);
+            user.put("phoneNumber", faker.phoneNumber().phoneNumber());
+            user.put("firstName", faker.name().firstName());
+            user.put("lastName", faker.name().lastName());
 
-		String phoneNumber = fakeData.phoneNumber().phoneNumber();
-		String firstName = fakeData.name().firstName();
-		String lastName = fakeData.name().lastName();
+            modifyTestData(user, fileName, region, index);
 
-		Map<String, Object> user = new LinkedHashMap<String, Object>();
-		user.put("email", email);
-		user.put("password", password);
-		user.put("phoneNumber", phoneNumber);
-		user.put("firstName", firstName);
-		user.put("lastName", lastName);
+            System.out.println("User profile data generated and updated for region: " + region);
 
+        } catch (NumberFormatException e) {
+            System.err.println("Invalid index provided: " + indexStr);
+        } catch (IOException | JSONException e) {
+            System.err.println("Error while updating user profile data: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Unexpected error in generateUserProfileData: " + e.getMessage());
+        }
+    }
 
-		modifyTestData(user, fileName, region, index);
+    /**
+     * Generates random newsletter test data and updates the JSON file.
+     */
+    public void generateNewsLetterData(String fileName, String region, String indexStr, String email) {
+        try {
+            int index = Integer.parseInt(indexStr);
 
-	}
-	public void generateNewsLetterData(String fileName, String region, String indexStr, String email) throws JSONException, IOException {
-		int index = Integer.parseInt(indexStr);
-		Faker fakeData = new Faker(); // to use to generate random data.
-		
-		//use DBUtils in case database connection is needed for test data.
-		
-		String countryCode = fakeData.country().countryCode2();
-		String firstName = fakeData.name().firstName();
-		String lastName = fakeData.name().lastName();
-		boolean newsletter = false;
-		
-		Map<String, Object> user = new LinkedHashMap<String, Object>();
-		user.put("email", email);
-		user.put("countryCode", countryCode);
-		user.put("firstName", firstName);
-		user.put("lastName", lastName);
-		user.put("newsletter", newsletter);
-		
-		
-		modifyTestData(user, fileName, region, index);
-		
-	}
+            Map<String, Object> user = new LinkedHashMap<>();
+            user.put("email", email);
+            user.put("countryCode", faker.address().countryCode()); // DataFaker API change
+            user.put("firstName", faker.name().firstName());
+            user.put("lastName", faker.name().lastName());
+            user.put("newsletter", false);
 
+            modifyTestData(user, fileName, region, index);
+
+            System.out.println("Newsletter data generated and updated for region: " + region);
+
+        } catch (NumberFormatException e) {
+            System.err.println("Invalid index provided: " + indexStr);
+        } catch (IOException | JSONException e) {
+            System.err.println("Error while updating newsletter data: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Unexpected error in generateNewsLetterData: " + e.getMessage());
+        }
+    }
 }

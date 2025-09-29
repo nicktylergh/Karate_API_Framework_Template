@@ -1,1 +1,11 @@
-{"qa":[{"firstName":"Milan","lastName":"Carroll","password":"Test123456!","phoneNumber":"667-305-9482 x1667","email":"nick.tyler@ecoatm.com"},{"firstName":"Giuseppe","lastName":"Jast","password":"Test123456!","phoneNumber":"(988) 423-1141 x6254","email":"nick.tyler@ecoatm.com"}],"dev":[{"firstName":"","lastName":"","password":"","phoneNumber":"","email":""}]}
+{
+  "qa": [
+    {
+      "email": "qa_user@example.com",
+      "password": "Password123!",
+      "phoneNumber": "555-000-1111",
+      "firstName": "QA",
+      "lastName": "User"
+    }
+  ]
+}

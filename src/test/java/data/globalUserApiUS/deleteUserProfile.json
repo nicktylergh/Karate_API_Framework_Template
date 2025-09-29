@@ -1,6 +1,8 @@
 {
-    "firstName": "Harish178",
-    "lastName": "Reddy",
-    "email": "nick.tyler@ecoatm.com",
-    "phoneNumber": "8182240830"
+  "qa": [
+    {
+      "email": "delete.qa@example.com",
+      "userId": "12345"
+    }
+  ]
 }
