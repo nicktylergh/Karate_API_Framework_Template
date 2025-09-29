@@ -16,7 +16,7 @@ All sensitive information has been removed. The template demonstrates structure,
 ---
 
 ## Project Structure
-KARATE_API_Framework_Template/
+Karate_API_Framework_Template/
 ├── src/
 │ └── test/
 │ ├── java/
